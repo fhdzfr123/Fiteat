@@ -1,0 +1,215 @@
+
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+
+void main() {
+  runApp(new MaterialApp(home: Fiteat()));
+}
+
+class Fiteat extends StatefulWidget {
+  @override
+  _FiteatState createState() => _FiteatState();
+}
+
+class _FiteatState extends State<Fiteat> {
+
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      key: _scaffoldKey,
+      drawer: Container(
+        width: 200,
+        child:Drawer(
+        child: ListView(
+          children: <Widget>[
+            ListTile(
+              title: Text("Home"),
+            ),
+            Divider(),
+            ListTile(
+              title: Text("About Us"),
+            ),
+            Divider(),
+          ],
+        ),
+      ),
+    ),
+    body: Container(
+      child: ListView(
+
+        children: <Widget>[
+          Container(
+              height: 50,
+              child: Padding(padding: EdgeInsets.symmetric(horizontal: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
+                  children: <Widget>[
+                    IconButton(
+                      icon: Icon(
+                        Icons.menu,size: 30,),
+
+                      onPressed: () {
+                        _scaffoldKey.currentState.openDrawer();
+                      },
+                    ),
+
+                    Container(
+                        width: 40.0,
+                        height: 40.0,
+                        decoration: new BoxDecoration(
+                            shape: BoxShape.circle,
+                            image: new DecorationImage(
+                                fit: BoxFit.fill,
+                              image: AssetImage("assets/Images/pic1.jpg"),
+                            ),
+                        ),
+                    ),
+
+                  ],
+                ),)
+          ),
+
+            Container(
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 15),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    //Text("Stores",style: TextStyle(fontSize: 30,color: Colors.black),),
+                    Text("Stores",style: TextStyle(fontSize: 20,color: Colors.black,fontWeight: FontWeight.w400),),
+                  ],
+                ),
+              ),
+            ),
+
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal:12),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+
+                children: <Widget>[
+                  Flexible(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.grey.shade200,
+                        borderRadius:  BorderRadius.circular(20),
+                      ),
+                      child: Container(
+                        height: 35,
+                        child:  TextField(
+                          textInputAction: TextInputAction.search,
+                          decoration: InputDecoration(
+                            hintText: 'Search ',
+                            suffixIcon: Icon(Icons.search),
+                            border: InputBorder.none,
+                            contentPadding: EdgeInsets.all(15),
+
+                          ),
+                          style: TextStyle(
+                            fontSize: 16,
+                            height: 0.5,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+
+                  Container(
+                     width: 45,
+                       child: Icon(Icons.filter_list, size: 30,color: Colors.grey,),
+
+                   ),
+
+
+                ],
+              ),
+            ),
+
+
+
+          BodyScreen(),
+        ],
+      ),
+    ),
+    );
+  }
+}
+
+
+
+class BodyScreen extends StatefulWidget {
+  @override
+  _BodyScreenState createState() => _BodyScreenState();
+}
+
+class _BodyScreenState extends State<BodyScreen> {
+  @override
+  Widget build(BuildContext context) {
+    return  ListView.builder(
+      physics: ClampingScrollPhysics(),
+      shrinkWrap: true,
+      itemBuilder: (context,index){
+        return Padding(
+          padding: EdgeInsets.symmetric(vertical: 8,horizontal: 8),
+          child: Card(
+            elevation: 8.0,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8)
+            ),
+            child: Column(
+              children: <Widget>[
+                ClipRRect(
+                  child: Container(
+                    height: 120,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage("assets/Images/pic1.jpg"),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(8),
+                    topRight: Radius.circular(8),
+                  ),
+
+                ),
+               Padding(
+                 padding: EdgeInsets.all(12),
+                 child:  Column(
+                   mainAxisAlignment: MainAxisAlignment.start,
+                   crossAxisAlignment: CrossAxisAlignment.start,
+                   children: <Widget>[
+                     Text("This Is Title".toUpperCase(),
+                       style: Theme.of(context).textTheme.title,
+                     ),
+                     SizedBox(height: 8),
+                     Row(
+                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                       children: <Widget>[
+                         Text("Here is the Name of the Store."),
+                       ],
+                     ),
+                   ],
+                 ),
+               ),
+              ],
+            ),
+          ),
+        );
+      },
+      itemCount: 10,
+    );
+  }
+}
+
+
+
+
+
