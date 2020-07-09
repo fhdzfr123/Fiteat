@@ -1,0 +1,222 @@
+
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+
+void main() {
+  runApp(new MaterialApp(home: Fiteat()));
+}
+
+class Fiteat extends StatefulWidget {
+  @override
+  _FiteatState createState() => _FiteatState();
+}
+
+class _FiteatState extends State<Fiteat> {
+
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Stack(
+          fit: StackFit.expand,
+          overflow: Overflow.clip,
+          children: <Widget>[
+            ListView(
+              children: <Widget>[
+                Container(
+                  height: 250,
+                  decoration: new BoxDecoration(
+                    image: new DecorationImage(
+                      fit: BoxFit.fill,
+                      image: AssetImage("assets/Images/pic1.jpg"),
+                    ),
+                  ),
+                  child: Padding(padding: EdgeInsets.symmetric(horizontal: 10,vertical: 16),
+                    child:  Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Icon(
+                              Icons.arrow_back,
+                              color: Colors.white,
+                            ),
+                          ],
+                        ),
+                        Text("Name", style: TextStyle(color: Colors.white,fontSize: 30),),
+
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 8),
+                          child: ListTile(
+                            title: Text('here is the Address Of Store. find location',
+                              style: TextStyle(color: Colors.white,fontSize: 16),),
+                            leading: Container(
+                                width: 30,
+                                height: 30,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  border: Border.all(
+                                    width: 1,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                child: Icon(Icons.location_on,color: Colors.white, size: 20,)
+                            ),
+                          ),
+                        ),
+
+                        Text("Here are the Description Of Stores",style: TextStyle(color: Colors.white),),
+
+                      ],
+                    ),
+                  ),
+                ),
+
+
+
+
+
+              ],
+            ),
+
+            DraggableScrollableSheet(
+              initialChildSize: 0.6,
+              minChildSize: 0.6,
+              maxChildSize: 0.8,
+              builder: (context,controller){
+                return  ClipRRect(
+                  borderRadius: BorderRadius.circular(30),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(30),
+                        topRight: Radius.circular(30),
+                      ),
+
+                    ),
+
+                    child: ListView(
+                      controller: controller,
+
+                      children: <Widget>[
+                        Column(
+
+                          children: <Widget>[
+                            SizedBox(
+
+                                height: 70.0,
+                                child: ListView(
+                                  physics: ClampingScrollPhysics(),
+                                  shrinkWrap: true,
+                                  //controller: controller,
+                                  scrollDirection: Axis.horizontal,
+                                  children: <Widget>[
+                                    ListView.builder(
+                                        scrollDirection: Axis.horizontal,
+                                        primary: false,
+                                        shrinkWrap: true,
+                                        itemCount: 6,
+                                        itemBuilder: (context,index){
+                                          return Padding(
+                                            padding: const EdgeInsets.symmetric(horizontal: 6,vertical: 16),
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                color: Colors.white,
+                                                border: Border.all(),
+                                                borderRadius: BorderRadius.all(Radius.circular(6)),
+                                              ),
+                                              width: 80,
+                                              child: Center(child: Text("Cat ${index+1}",style: TextStyle(fontWeight: FontWeight.bold),)),
+                                            ),
+                                          );
+
+                                        }
+                                    ),
+
+
+                                  ],
+                                ),
+                              ),
+
+
+                            Container(
+                              child: GridView.builder(
+                                physics: ClampingScrollPhysics(),
+                                shrinkWrap: true,
+                                primary: false,
+                                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+                                itemCount: 10,
+                                itemBuilder: (context,index){
+                                  return Card(
+                                    elevation: 8.0,
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(8)
+                                    ),
+                                    child: Column(
+                                      children: <Widget>[
+                                        ClipRRect(
+                                          child: Container(
+                                            height: 100,
+                                            decoration: BoxDecoration(
+                                              image: DecorationImage(
+                                                image: AssetImage("assets/Images/pic2.jpg"),
+                                                fit: BoxFit.cover,
+                                              ),
+                                            ),
+                                          ),
+                                          borderRadius: BorderRadius.only(
+                                            topLeft: Radius.circular(8),
+                                            topRight: Radius.circular(8),
+                                          ),
+
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.symmetric(vertical: 8),
+                                          child: Column(
+                                            mainAxisAlignment: MainAxisAlignment.start,
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: <Widget>[
+                                              Text("This Is Title".toUpperCase(),
+                                                style: TextStyle(fontSize: 12,),
+                                              ),
+
+                                              Text("Price 40\$"),
+
+                                            ],
+                                          ),
+                                        ),
+
+                                        //),
+                                      ],
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
+
+
+                          ],
+                        ),
+                      ],
+                    ),
+
+                  ),
+                );
+              },
+            ),
+
+
+
+
+
+          ]
+      ),
+    );
+  }
+}
+

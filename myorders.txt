@@ -1,0 +1,125 @@
+
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+
+void main() {
+  runApp(new MaterialApp(home: Fiteat()));
+}
+
+class Fiteat extends StatefulWidget {
+  @override
+  _FiteatState createState() => _FiteatState();
+}
+
+class _FiteatState extends State<Fiteat> {
+
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      key: _scaffoldKey,
+      drawer: Container(
+        width: 200,
+        child:Drawer(
+          child: ListView(
+            children: <Widget>[
+              ListTile(
+                title: Text("Home"),
+              ),
+              Divider(),
+              ListTile(
+                title: Text("About Us"),
+              ),
+              Divider(),
+            ],
+          ),
+        ),
+      ),
+      body: Container(
+        child: ListView(
+
+          children: <Widget>[
+            Container(
+                height: 50,
+                child: Padding(padding: EdgeInsets.symmetric(horizontal: 10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
+                    children: <Widget>[
+                      IconButton(
+                        icon: Icon(
+                          Icons.menu,size: 30,),
+
+                        onPressed: () {
+                          _scaffoldKey.currentState.openDrawer();
+                        },
+                      ),
+
+                      Container(
+                        width: 40.0,
+                        height: 40.0,
+                        decoration: new BoxDecoration(
+                          shape: BoxShape.circle,
+                          image: new DecorationImage(
+                            fit: BoxFit.fill,
+                            image: AssetImage("assets/Images/pic2.jpg"),
+                          ),
+                        ),
+                      ),
+
+                    ],
+                  ),
+                ),
+            ),
+
+            Container(
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 15),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    //Text("Stores",style: TextStyle(fontSize: 30,color: Colors.black),),
+                    Text("My Orders",style: TextStyle(fontSize: 20,color: Colors.black,fontWeight: FontWeight.w400),),
+                  ],
+                ),
+              ),
+            ),
+
+            Divider(
+              thickness: 2,
+              color: Colors.black,
+            ),
+
+            ListView.separated(
+              physics: ClampingScrollPhysics(),
+              shrinkWrap: true,
+              itemCount: 20,
+              itemBuilder: (BuildContext context,int index){
+                return ListTile(
+                  trailing: FlatButton(
+                    child: Text("cancel",style: TextStyle(color: Colors.orange,fontStyle: FontStyle.italic),),
+                  ),
+                  title: Text("Order Name"),
+                  subtitle: Text("Order Description"),
+                );
+              },
+              separatorBuilder: (BuildContext context,int index) => Divider() ,
+            ),
+
+
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+
+
+
+
+

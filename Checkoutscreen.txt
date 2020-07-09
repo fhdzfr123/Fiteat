@@ -1,0 +1,122 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+void main() => runApp(MaterialApp(home: MyApp()));
+
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Stack(
+        children: <Widget>[
+          Container(
+            child: Column(children: <Widget>[
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                 Padding(
+                   padding: EdgeInsets.only(top: 12,),
+                   child:  IconButton(icon: Icon(Icons.arrow_back,color: Colors.black), onPressed: null),
+                 )
+                ],
+              ),
+              Container(
+                child: Container(
+                    width: 300,
+                    height: 80,
+                    decoration: BoxDecoration(
+                        color: Colors.redAccent,
+                        borderRadius: BorderRadius.all(Radius.circular(12))
+                    ),
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 8),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          //Image(image: AssetImage("assets/Images/pic1.jpg"))
+                          Container(
+                            width: 70,
+                            height: 70,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.all(Radius.circular(6)),
+                              image: DecorationImage(
+                                image: AssetImage("assets/Images/pic2.jpg"),
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Text("Name of the product",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+                              Container(
+                                height: 20,
+                                width: MediaQuery.of(context).size.width *0.38,
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: <Widget>[
+                                    Text("1x3",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+                                    Text("120\$",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: <Widget>[
+                              Text("Total",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+                              Text("40 \$",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+                            ],
+                          ),
+                        ],
+                      ),
+                    )
+                ),
+              ),
+
+            ],
+
+            ),
+          ),
+
+
+
+          Align(
+              alignment: Alignment.bottomCenter,
+              child: ButtonBar(
+                alignment: MainAxisAlignment.center,
+                children: <Widget>[
+
+                  Container(
+                    width: MediaQuery.of(context).size.width *0.4,
+                    decoration: BoxDecoration(
+                        color: Colors.redAccent,
+                        borderRadius: BorderRadius.all(Radius.circular(8))
+                    ),
+                    child: RaisedButton(
+                      onPressed: (){},
+                      color: Colors.redAccent,
+                      padding:  EdgeInsets.all(12.0),
+                      child: new Text(
+                        "Check Out",
+
+                      ),
+                    ),
+                  ),
+                ],
+              )
+          ),
+
+        ],
+      ),
+    );
+  }
+}
